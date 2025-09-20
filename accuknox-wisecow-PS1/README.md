@@ -1,12 +1,12 @@
 # Wisecow Project
 
-## 📌 Project Overview
+## Project Overview
 The **Wisecow project** is a small demo application containerized with Docker and deployed on **Kubernetes (Minikube)**.  
 It simulates a fun "talking cow" application, accessible through a browser on port `4499`.
 
 ---
 
-## 🔧 What was done
+## What was done
 1. **Containerization**  
    - Created a `Dockerfile` for the wisecow application.
    - Built and pushed the Docker image to DockerHub.
@@ -16,7 +16,7 @@ It simulates a fun "talking cow" application, accessible through a browser on po
    - Deployed the app to Minikube.
    - Verified access via browser (`http://wisecow.local`).
 
-### 🖼️ Screenshots
+## Screenshots
 ![Wisecow running in browser](assets/sc1.JPG)
 ![Wisecow running in browser](assets/sc2.JPG)
 
@@ -30,7 +30,7 @@ It simulates a fun "talking cow" application, accessible through a browser on po
 
 ---
 
-## 📂 Files & Folders
+## Files & Folders
 - `Dockerfile` → Containerization
 - `deploy.yaml` → Kubernetes Deployment
 - `svc.yaml` → Kubernetes Service
@@ -39,7 +39,7 @@ It simulates a fun "talking cow" application, accessible through a browser on po
 
 ---
 
-## 🚀 How to Run Locally
+## How to Run Locally
 1. Start Minikube:
    ```bash
    minikube start

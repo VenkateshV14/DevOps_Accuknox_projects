@@ -3,7 +3,7 @@
 This repository contains multiple DevOps-related projects completed as part of an assignment.  
 Each project demonstrates hands-on skills with Docker, Kubernetes, CI/CD, and Linux scripting.
 
-## 📂 Repository Structure
+## Repository Structure
 
 - **accuknox-wisecow-PS1/**
   - A containerized application (`wisecow`) deployed on Kubernetes using Minikube.
@@ -19,7 +19,7 @@ Each project demonstrates hands-on skills with Docker, Kubernetes, CI/CD, and Li
 
 ---
 
-## 🚀 Tech Stack & Tools
+## Tech Stack & Tools
 - **Docker & DockerHub**
 - **Kubernetes (Minikube)**
 - **GitHub Actions (CI/CD)**
@@ -28,7 +28,7 @@ Each project demonstrates hands-on skills with Docker, Kubernetes, CI/CD, and Li
 
 ---
 
-## 🎯 Purpose
+## Purpose
 This repository showcases my ability to:
 1. Containerize and deploy applications with Kubernetes.
 2. Build and configure CI/CD pipelines.
