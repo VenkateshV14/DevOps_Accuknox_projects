@@ -1,0 +1,50 @@
+name: CD with Minikube + Ingress
+
+on:
+  workflow_dispatch:   # manual trigger
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Minikube
+        run: |
+          curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+          sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+      - name: Install kubectl
+        run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+      - name: Start Minikube
+        run: |
+          minikube start --driver=docker --wait=false
+          kubectl get nodes
+
+      - name: Enable Ingress addon
+        run: |
+          minikube addons enable ingress
+          sleep 20
+          kubectl get pods -n kube-system
+
+      - name: Deploy Wisecow
+        run: |
+          kubectl apply -f accuknox-wisecow-PS1/deploy.yaml
+          kubectl apply -f accuknox-wisecow-PS1/svc.yaml
+          kubectl apply -f accuknox-wisecow-PS1/ingress.yaml
+          kubectl get ingress
+
+      - name: Wait for Deployment
+        run: |
+          kubectl wait --for=condition=available --timeout=60s deployment/wisecow-deployment
+
+      - name: Test ingress (ignore failure on GitHub runner)
+        run: |
+          curl -s -H "Host: wisecow.local" http://127.0.0.1 || echo "⚠️ curl test failed (expected on GitHub Actions)"
+
